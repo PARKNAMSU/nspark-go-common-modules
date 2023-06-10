@@ -1,3 +1,3 @@
-module nspark.com/common-modules
+module github.com/PARKNAMSU/nspark-go-common-modules
 
 go 1.19
