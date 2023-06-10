@@ -29,3 +29,18 @@ func JsonBinTOObject[T interface{}](bin []byte) (*T, error) {
 
 	return &newObj, nil
 }
+
+func ObjectToModel[T interface{}](obj interface{}, model *T) error {
+	bin, err := json.Marshal(obj)
+
+	if CheckError(err) {
+		return err
+	}
+
+	err = json.Unmarshal(bin, model)
+
+	if CheckError(err) {
+		return err
+	}
+	return nil
+}
