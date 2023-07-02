@@ -38,3 +38,24 @@ func ForEach[T interface{}](arr []T, callback func(val T) bool) {
 		}
 	}
 }
+
+func KeyBy[T interface{}, V comparable](arr []T, callback func(val T) V) map[V]T {
+	keyByArr := map[V]T{}
+	for _, val := range arr {
+		keyByArr[callback(val)] = val
+	}
+	return keyByArr
+}
+
+func GroupBy[T interface{}, V comparable](arr []T, callback func(val T) V) map[V][]T {
+	groupByArr := map[V][]T{}
+	for _, val := range arr {
+		if getArr, ok := groupByArr[callback((val))]; ok {
+			getArr = append(getArr, val)
+			groupByArr[callback((val))] = getArr
+		} else {
+			groupByArr[callback((val))] = []T{val}
+		}
+	}
+	return groupByArr
+}
